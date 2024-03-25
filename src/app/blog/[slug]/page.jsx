@@ -3,6 +3,8 @@ import styles from './singlePost.module.css';
 import PostUser from '@/components/postUser/postUser';
 import { Suspense } from 'react';
 import { getPost } from '@/lib/data';
+import parse from 'html-react-parser';
+
 
 // const getData = async(slug) =>{
 //   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
@@ -33,21 +35,21 @@ const SinglePostPage = async({params}) => {
       )}
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{post.title}</h1>
-        <div className={styles.detail}>
-          {post && (
+        {/* <div className={styles.detail}> */}
+          {/* {post && (
             <Suspense fallback={<div>Loading...</div>}>
               <PostUser userId={post.userId} />
             </Suspense>
           )}
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
-            <span className={styles.detailValue}>
+            <span className={styles.detailValue}> */}
               {/* {post.createdAt.toString().slice(4, 16)} */}
-              date
-            </span>
-          </div>
-        </div>
-        <div className={styles.content}>{post.desc}</div>
+              {/* date
+            </span> */}
+          {/* </div>
+        </div> */}
+        <div className={styles.content}>{parse(post.desc)}</div>
       </div>
     </div>
   )
